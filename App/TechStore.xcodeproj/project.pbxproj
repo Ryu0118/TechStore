@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2311949D2966D1E700A0E639 /* TechStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311949C2966D1E700A0E639 /* TechStoreApp.swift */; };
-		2311949F2966D1E700A0E639 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311949E2966D1E700A0E639 /* ContentView.swift */; };
 		231194A12966D1EC00A0E639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231194A02966D1EC00A0E639 /* Assets.xcassets */; };
 		231194A52966D1EC00A0E639 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231194A42966D1EC00A0E639 /* Preview Assets.xcassets */; };
 		231194AF2966D1ED00A0E639 /* TechStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231194AE2966D1ED00A0E639 /* TechStoreTests.swift */; };
 		231194B92966D1ED00A0E639 /* TechStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231194B82966D1ED00A0E639 /* TechStoreUITests.swift */; };
 		231194BB2966D1ED00A0E639 /* TechStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231194BA2966D1ED00A0E639 /* TechStoreUITestsLaunchTests.swift */; };
+		231194CE2966D88B00A0E639 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 231194CD2966D88B00A0E639 /* Domain */; };
+		231194D02966D88F00A0E639 /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 231194CF2966D88F00A0E639 /* Infrastructure */; };
+		231194D22966D89300A0E639 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D12966D89300A0E639 /* Presentation */; };
+		231194D52966DAAD00A0E639 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D42966DAAD00A0E639 /* ComposableArchitecture */; };
+		231194D72966DAAD00A0E639 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D62966DAAD00A0E639 /* Dependencies */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 /* Begin PBXFileReference section */
 		231194992966D1E700A0E639 /* TechStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TechStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2311949C2966D1E700A0E639 /* TechStoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechStoreApp.swift; sourceTree = "<group>"; };
-		2311949E2966D1E700A0E639 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		231194A02966D1EC00A0E639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231194A22966D1EC00A0E639 /* TechStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TechStore.entitlements; sourceTree = "<group>"; };
 		231194A42966D1EC00A0E639 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +48,8 @@
 		231194B42966D1ED00A0E639 /* TechStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TechStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		231194B82966D1ED00A0E639 /* TechStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechStoreUITests.swift; sourceTree = "<group>"; };
 		231194BA2966D1ED00A0E639 /* TechStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		231194C72966D40C00A0E639 /* TechStore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TechStore; path = ..; sourceTree = "<group>"; };
+		231194CC2966D82500A0E639 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +57,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231194D72966DAAD00A0E639 /* Dependencies in Frameworks */,
+				231194D22966D89300A0E639 /* Presentation in Frameworks */,
+				231194CE2966D88B00A0E639 /* Domain in Frameworks */,
+				231194D52966DAAD00A0E639 /* ComposableArchitecture in Frameworks */,
+				231194D02966D88F00A0E639 /* Infrastructure in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				2311949B2966D1E700A0E639 /* TechStore */,
+				231194C72966D40C00A0E639 /* TechStore */,
 				231194AD2966D1ED00A0E639 /* TechStoreTests */,
 				231194B72966D1ED00A0E639 /* TechStoreUITests */,
 				2311949A2966D1E700A0E639 /* Products */,
+				231194CB2966D7BA00A0E639 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				2311949C2966D1E700A0E639 /* TechStoreApp.swift */,
-				2311949E2966D1E700A0E639 /* ContentView.swift */,
 				231194A02966D1EC00A0E639 /* Assets.xcassets */,
 				231194A22966D1EC00A0E639 /* TechStore.entitlements */,
 				231194A32966D1EC00A0E639 /* Preview Content */,
@@ -129,6 +140,14 @@
 			path = TechStoreUITests;
 			sourceTree = "<group>";
 		};
+		231194CB2966D7BA00A0E639 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				231194CC2966D82500A0E639 /* Package.swift */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +164,13 @@
 			dependencies = (
 			);
 			name = TechStore;
+			packageProductDependencies = (
+				231194CD2966D88B00A0E639 /* Domain */,
+				231194CF2966D88F00A0E639 /* Infrastructure */,
+				231194D12966D89300A0E639 /* Presentation */,
+				231194D42966DAAD00A0E639 /* ComposableArchitecture */,
+				231194D62966DAAD00A0E639 /* Dependencies */,
+			);
 			productName = TechStore;
 			productReference = 231194992966D1E700A0E639 /* TechStore.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 231194902966D1E700A0E639;
+			packageReferences = (
+				231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 2311949A2966D1E700A0E639 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2311949F2966D1E700A0E639 /* ContentView.swift in Sources */,
 				2311949D2966D1E700A0E639 /* TechStoreApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +447,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -437,7 +466,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryu.TechStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +488,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -475,7 +507,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryu.TechStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -612,6 +646,42 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = exactVersion;
+				version = 0.47.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		231194CD2966D88B00A0E639 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		231194CF2966D88F00A0E639 /* Infrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Infrastructure;
+		};
+		231194D12966D89300A0E639 /* Presentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Presentation;
+		};
+		231194D42966DAAD00A0E639 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		231194D62966DAAD00A0E639 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = Dependencies;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 231194912966D1E700A0E639 /* Project object */;
 }

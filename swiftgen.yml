@@ -1,0 +1,14 @@
+xcassets:
+  inputs:
+    - VoteAp/Resources/Assets.xcassets
+    - VoteApp/Resources/Colors.xcassets
+  outputs:
+    templateName: swift5
+    output: VoteApp/Generated/Assets.swift
+
+strings:
+  inputs:
+    - VoteApp/Resources/Localized/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: VoteApp/Generated/Strings.swift
