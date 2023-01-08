@@ -5,6 +5,7 @@
 //  Created by ryunosuke.shibuya on 2023/01/09.
 //
 
+import Domain
 import Foundation
 
 extension APIRequest {
