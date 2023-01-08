@@ -10,7 +10,7 @@ import ComposableArchitecture
 import XCTestDynamicOverlay
 
 public struct RSSReader {
-    public var readRss: (_ url: URL) -> RSSResponse
+    public var readRss: (_ url: URL) async throws -> RSSResponse
     
     public init(readRss: @escaping (_: URL) -> RSSResponse) {
         self.readRss = readRss

@@ -11,14 +11,14 @@ public enum HTTPMethod: String {
     case get = "GET"
 }
 
-public protocol GithubAPIRequest {
+public protocol APIRequest {
     var apiUrl: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
     var queryItems: [URLQueryItem] { get }
 }
 
-public extension GithubAPIRequest {
+public extension APIRequest {
     func buildRequest() -> URLRequest? {
         var urlComponents = URLComponents(string: apiUrl)
         urlComponents?.queryItems = queryItems

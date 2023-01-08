@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "TechStore",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
     ],
     products: [
         .library(name: "Domain", targets: ["Domain"]),
@@ -14,14 +14,14 @@ let package = Package(
         .library(name: "Infrastructure", targets: ["Infrastructure"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2")
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2"),
     ],
     targets: [
         .target(
             name: "Domain",
             dependencies: [
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
         .target(
@@ -29,7 +29,7 @@ let package = Package(
             dependencies: [
                 "Domain",
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
         .target(
@@ -37,7 +37,7 @@ let package = Package(
             dependencies: [
                 "Domain",
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
         .testTarget(
@@ -46,7 +46,7 @@ let package = Package(
                 "Domain",
                 "Presentation",
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
     ]
