@@ -9,32 +9,34 @@ import Foundation
 
 public struct RSSResponse: Decodable {
     public let feed: Feed
-    public let items: [Item]
+    public var items: [Item]
 }
 
-public extension RSSResponse {
-    struct Feed: Decodable {
-        let url: String
-        let title: String
-        let link: String
-        let description: String
-        let image: String
+extension RSSResponse {
+    public struct Feed: Decodable {
+        public let url: String
+        public let title: String
+        public let link: String
+        public let description: String
+        public let image: String
     }
 }
 
-public extension RSSResponse {
-    struct Item: Decodable {
-        let title: String
-        let pubDate: String
-        let author: String
-        let description: String
-        let enclosure: Enclosure
-        let categories: [String]
+extension RSSResponse {
+    public struct Item: Decodable, Hashable {
+        public let title: String
+        public let pubDate: String
+        public let link: String
+        public var thumbnail: String
+        public let author: String
+        public let description: String
+        public let enclosure: Enclosure
+        public let categories: [String]
     }
 }
 
-public extension RSSResponse.Item {
-    struct Enclosure: Decodable {
-        let link: String
+extension RSSResponse.Item {
+    public struct Enclosure: Decodable, Hashable {
+        public let link: String?
     }
 }

@@ -21,7 +21,7 @@ public struct RootReducer: ReducerProtocol {
             case .onAppear:
                 Task {
                     do {
-                        let rss = try await readRss("https://zenn.dev/topics/swiftconcurrency/feed")
+                        let rss = try await readRss("https://qiita.com/popular-items/feed")
                         print(rss)
                     } catch {
                         print(error)
