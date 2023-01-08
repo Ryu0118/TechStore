@@ -16,6 +16,7 @@ public protocol APIRequest {
     var path: String { get }
     var method: HTTPMethod { get }
     var queryItems: [URLQueryItem] { get }
+    var httpHeaders: [String: String] { get }
 }
 
 public extension APIRequest {

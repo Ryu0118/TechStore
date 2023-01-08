@@ -9,7 +9,8 @@ import ComposableArchitecture
 import Foundation
 
 public struct RootReducer: ReducerProtocol {
-    @Dependency(\.rssReader.readRss) var readRss
+    @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend
+    @Dependency(\.zennTrendRepository.fetchTrend) var fetchZennTrend
 
     public var body: some ReducerProtocol<State, Action> {
         BindingReducer()
@@ -21,8 +22,13 @@ public struct RootReducer: ReducerProtocol {
             case .onAppear:
                 Task {
                     do {
-                        let rss = try await readRss("https://qiita.com/popular-items/feed")
-                        print(rss)
+                        async let qiita = fetchQiitaTrend()
+                        async let zenn = fetchZennTrend()
+
+                        let (qiitaTrend, zennTrend) = try await (qiita, zenn)
+
+                        print(qiitaTrend)
+                        print(zennTrend)
                     } catch {
                         print(error)
                     }

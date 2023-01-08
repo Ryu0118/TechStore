@@ -30,9 +30,9 @@ extension RSSReader: DependencyKey {
     ) async throws -> [RSSResponse.Item: OGPData] { // thumbnailがないItemのみOGPDataを取得しItemとOGPDataを関連づける
         var ogpRelation = [RSSResponse.Item: OGPData]()
 
-        let ogpFetcher = OGPFetcher()
-
         try await withThrowingTaskGroup(of: (RSSResponse.Item, OGPData).self) { group in
+            let ogpFetcher = OGPFetcher()
+
             for item in items {
                 if item.enclosure.link?.isEmpty ?? true,
                    item.thumbnail.isEmpty

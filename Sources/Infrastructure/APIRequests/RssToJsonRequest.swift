@@ -34,4 +34,6 @@ extension RssToJsonRequest: APIRequest {
             .init(name: "rss_url", value: rssUrl),
         ]
     }
+
+    var httpHeaders: [String: String] { [:] }
 }
