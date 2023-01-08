@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2"),
-        .package(url: "https://github.com/kean/Nuke", from: "11.5.3")
+        .package(url: "https://github.com/kean/Nuke", from: "11.5.3"),
     ],
     targets: [
         .target(
