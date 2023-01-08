@@ -23,4 +23,9 @@ public extension DependencyValues {
         get { self[ZennTrendRepository.self] }
         set { self[ZennTrendRepository.self] = newValue }
     }
+    
+    var articleRepository: ArticleRepository {
+        get { self[ArticleRepository.self] }
+        set { self[ArticleRepository.self] = newValue }
+    }
 }

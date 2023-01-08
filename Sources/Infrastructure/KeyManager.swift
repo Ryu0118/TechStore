@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct KeyManager {
+final class KeyManager {
+    static let shared = KeyManager()
+    private init() {}
+    
     private let keyFilePath = Bundle.module.path(forResource: "apiKey", ofType: "plist")
 
     func getKeys() -> [String: String]? {
@@ -21,11 +24,19 @@ struct KeyManager {
         return nil
     }
 
-    func getValue(key: String) -> String? {
-        guard let keys = getKeys() else {
-            return nil
+    func getValue(key: Keys) -> String {
+        guard let keys = getKeys(),
+              let value = keys[key.rawValue]
+        else {
+            fatalError("Sources/Infrastructure/Resources/apiKey.plist not found.")
         }
 
-        return keys[key]
+        return value
+    }
+}
+
+extension KeyManager {
+    enum Keys: String {
+        case qiitaToken
     }
 }

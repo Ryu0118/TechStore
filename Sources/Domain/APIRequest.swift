@@ -18,21 +18,3 @@ public protocol APIRequest {
     var queryItems: [URLQueryItem] { get }
     var httpHeaders: [String: String] { get }
 }
-
-public extension APIRequest {
-    func buildRequest() -> URLRequest? {
-        var urlComponents = URLComponents(string: apiUrl)
-        urlComponents?.queryItems = queryItems
-
-        guard var url = urlComponents?.url else {
-            return nil
-        }
-
-        url = url.appendingPathComponent(path)
-
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-
-        return request
-    }
-}
