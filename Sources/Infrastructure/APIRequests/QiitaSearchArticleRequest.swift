@@ -16,7 +16,7 @@ struct QiitaSearchArticleRequest {
     init(page: Int, perPage: Int, query: String) {
         self.page = page
         self.perPage = perPage
-        self.query = "body" + query
+        self.query = "body:" + query
     }
 }
 

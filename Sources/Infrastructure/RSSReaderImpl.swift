@@ -12,7 +12,8 @@ import Foundation
 extension RSSReader: DependencyKey {
     public static var liveValue: RSSReader = .init { url in
         let request = RssToJsonRequest(rssUrl: url)
-        let client = APIClient(urlSession: request.buildURLSession())
+        let session = request.buildURLSession()
+        let client = APIClient(urlSession: session)
         let data = try await client.send(request)
         var response = try JSONDecoder().decode(RSSResponse.self, from: data)
 

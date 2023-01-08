@@ -14,7 +14,7 @@ extension APIRequest {
             return URLSession.shared
         }
 
-        var sessionConfig = URLSessionConfiguration.default
+        let sessionConfig = URLSessionConfiguration.default
         sessionConfig.httpAdditionalHeaders = httpHeaders
 
         return URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)

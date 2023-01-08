@@ -11,6 +11,7 @@ import Foundation
 public struct RootReducer: ReducerProtocol {
     @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend
     @Dependency(\.zennTrendRepository.fetchTrend) var fetchZennTrend
+    @Dependency(\.articleRepository.searchArticle) var searchArticle
 
     public var body: some ReducerProtocol<State, Action> {
         BindingReducer()
@@ -22,13 +23,15 @@ public struct RootReducer: ReducerProtocol {
             case .onAppear:
                 Task {
                     do {
-                        async let qiita = fetchQiitaTrend()
-                        async let zenn = fetchZennTrend()
-
-                        let (qiitaTrend, zennTrend) = try await (qiita, zenn)
-
-                        print(qiitaTrend)
-                        print(zennTrend)
+//                        async let qiita = fetchQiitaTrend()
+//                        async let zenn = fetchZennTrend()
+//
+//                        let (qiitaTrend, zennTrend) = try await (qiita, zenn)
+//
+//                        print(qiitaTrend)
+//                        print(zennTrend)
+                        let article = try await searchArticle("Swift", 1, 10)
+                        print(article)
                     } catch {
                         print(error)
                     }

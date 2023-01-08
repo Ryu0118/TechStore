@@ -10,9 +10,9 @@ import Foundation
 import XCTestDynamicOverlay
 
 public struct ArticleRepository {
-    public var searchArticle: (_ query: String) async throws -> Article
+    public var searchArticle: (_ query: String, _ page: Int, _ perPage: Int) async throws -> [Article]
 
-    public init(searchArticle: @escaping (_: String) async throws -> Article) {
+    public init(searchArticle: @escaping (_ query: String, _ page: Int, _ perPage: Int) async throws -> [Article]) {
         self.searchArticle = searchArticle
     }
 }
