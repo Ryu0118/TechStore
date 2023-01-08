@@ -13,4 +13,14 @@ public extension DependencyValues {
         get { self[RSSReader.self] }
         set { self[RSSReader.self] = newValue }
     }
+    
+    var qiitaTrendRepository: QiitaTrendRepository {
+        get { self[QiitaTrendRepository.self] }
+        set { self[QiitaTrendRepository.self] = newValue }
+    }
+    
+    var zennTrendRepository: ZennTrendRepository {
+        get { self[ZennTrendRepository.self] }
+        set { self[ZennTrendRepository.self] = newValue }
+    }
 }
