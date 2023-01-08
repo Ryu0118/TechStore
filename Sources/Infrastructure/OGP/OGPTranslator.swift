@@ -9,10 +9,6 @@ import Foundation
 import SwiftSoup
 
 struct OGPTranslator {
-    /// - Parameters
-    ///   - from: HTML String
-    ///
-    /// - Returns: OGPData structure
     func getOGPData(from html: String) throws -> OGPData {
         let doc = try SwiftSoup.parse(html)
         let metaTags = try doc.select("meta")

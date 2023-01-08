@@ -1,12 +1,12 @@
-// 
+//
 //  APIRequest+buildURLSession.swift
-//  
+//
 //
 //  Created by ryunosuke.shibuya on 2023/01/09.
 //
 
-import Foundation
 import Domain
+import Foundation
 
 extension APIRequest {
     func buildURLSession() -> URLSession {
@@ -16,7 +16,7 @@ extension APIRequest {
 
         var sessionConfig = URLSessionConfiguration.default
         sessionConfig.httpAdditionalHeaders = httpHeaders
-        
+
         return URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 final class KeyManager {
     static let shared = KeyManager()
     private init() {}
-    
+
     private let keyFilePath = Bundle.module.path(forResource: "apiKey", ofType: "plist")
 
     func getKeys() -> [String: String]? {
