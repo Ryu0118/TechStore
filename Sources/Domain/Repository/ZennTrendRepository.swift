@@ -9,8 +9,12 @@ import Foundation
 import XCTestDynamicOverlay
 import Dependencies
 
-struct ZennTrendRepository: TrendRepository {
-    var fetchTrend: () async throws -> RSSResponse
+public struct ZennTrendRepository: TrendRepository {
+    public var fetchTrend: () async throws -> RSSResponse
+    
+    public init(fetchTrend: @escaping () async throws -> RSSResponse) {
+        self.fetchTrend = fetchTrend
+    }
 }
 
 extension ZennTrendRepository: TestDependencyKey {
