@@ -9,16 +9,16 @@ import Foundation
 import Domain
 
 struct RssToJsonRequest {
-    private let rssUrl: URL
+    private let rssUrl: String
     
-    init(rssUrl: URL) {
+    init(rssUrl: String) {
         self.rssUrl = rssUrl
     }
 }
 
 extension RssToJsonRequest: APIRequest {
     var apiUrl: String {
-        "api.rss2json.com"
+        "https://api.rss2json.com"
     }
     
     var path: String {
@@ -31,7 +31,7 @@ extension RssToJsonRequest: APIRequest {
     
     var queryItems: [URLQueryItem] {
         [
-            .init(name: "rss_url", value: rssUrl.absoluteString)
+            .init(name: "rss_url", value: rssUrl)
         ]
     }
 }

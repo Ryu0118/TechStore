@@ -18,6 +18,7 @@
 		231194D22966D89300A0E639 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D12966D89300A0E639 /* Presentation */; };
 		231194D52966DAAD00A0E639 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D42966DAAD00A0E639 /* ComposableArchitecture */; };
 		231194D72966DAAD00A0E639 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 231194D62966DAAD00A0E639 /* Dependencies */; };
+		3E0B17C4296ACB190044249B /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3E0B17C3296ACB190044249B /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 				231194D72966DAAD00A0E639 /* Dependencies in Frameworks */,
 				231194D22966D89300A0E639 /* Presentation in Frameworks */,
 				231194CE2966D88B00A0E639 /* Domain in Frameworks */,
+				3E0B17C4296ACB190044249B /* Nuke in Frameworks */,
 				231194D52966DAAD00A0E639 /* ComposableArchitecture in Frameworks */,
 				231194D02966D88F00A0E639 /* Infrastructure in Frameworks */,
 			);
@@ -170,6 +172,7 @@
 				231194D12966D89300A0E639 /* Presentation */,
 				231194D42966DAAD00A0E639 /* ComposableArchitecture */,
 				231194D62966DAAD00A0E639 /* Dependencies */,
+				3E0B17C3296ACB190044249B /* Nuke */,
 			);
 			productName = TechStore;
 			productReference = 231194992966D1E700A0E639 /* TechStore.app */;
@@ -245,6 +248,7 @@
 			mainGroup = 231194902966D1E700A0E639;
 			packageReferences = (
 				231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				3E0B17C2296ACB180044249B /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 2311949A2966D1E700A0E639 /* Products */;
 			projectDirPath = "";
@@ -658,6 +662,14 @@
 				version = 0.47.2;
 			};
 		};
+		3E0B17C2296ACB180044249B /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -682,6 +694,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 231194D32966DAAD00A0E639 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = Dependencies;
+		};
+		3E0B17C3296ACB190044249B /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E0B17C2296ACB180044249B /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
