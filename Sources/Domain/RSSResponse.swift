@@ -12,8 +12,8 @@ public struct RSSResponse: Decodable {
     public var items: [Item]
 }
 
-extension RSSResponse {
-    public struct Feed: Decodable {
+public extension RSSResponse {
+    struct Feed: Decodable {
         public let url: String
         public let title: String
         public let link: String
@@ -22,8 +22,8 @@ extension RSSResponse {
     }
 }
 
-extension RSSResponse {
-    public struct Item: Decodable, Hashable {
+public extension RSSResponse {
+    struct Item: Decodable, Hashable {
         public let title: String
         public let pubDate: String
         public let link: String
@@ -35,8 +35,8 @@ extension RSSResponse {
     }
 }
 
-extension RSSResponse.Item {
-    public struct Enclosure: Decodable, Hashable {
+public extension RSSResponse.Item {
+    struct Enclosure: Decodable, Hashable {
         public let link: String?
     }
 }

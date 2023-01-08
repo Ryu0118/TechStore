@@ -12,17 +12,17 @@ struct OGPFetcher {
         guard let url = URL(string: urlString) else {
             throw OGPFetcherError.invalidURL
         }
-        
+
         let request = URLRequest(url: url)
         let (data, _) = try await URLSession.shared.data(for: request)
-        
+
         guard let htmlString = String(data: data, encoding: .utf8) else {
             throw OGPFetcherError.failedToEncode
         }
-        
+
         let translator = OGPTranslator()
         let ogpData = try translator.getOGPData(from: htmlString)
-        
+
         return ogpData
     }
 }

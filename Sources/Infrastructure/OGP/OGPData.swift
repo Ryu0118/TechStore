@@ -38,8 +38,7 @@ private extension CGFloat {
     init?(_ string: String) {
         if let double = Double(string) {
             self = CGFloat(double)
-        }
-        else {
+        } else {
             return nil
         }
     }
