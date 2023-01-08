@@ -12,7 +12,7 @@ import XCTestDynamicOverlay
 public struct RSSReader {
     public var readRss: (_ url: URL) async throws -> RSSResponse
     
-    public init(readRss: @escaping (_: URL) -> RSSResponse) {
+    public init(readRss: @escaping (_: URL) async throws -> RSSResponse) {
         self.readRss = readRss
     }
 }

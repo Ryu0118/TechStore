@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct RSSResponse {
+public struct RSSResponse: Decodable {
     public let feed: Feed
     public let items: [Item]
 }
 
 public extension RSSResponse {
-    struct Feed {
+    struct Feed: Decodable {
         let url: String
         let title: String
         let link: String
@@ -23,7 +23,7 @@ public extension RSSResponse {
 }
 
 public extension RSSResponse {
-    struct Item {
+    struct Item: Decodable {
         let title: String
         let pubDate: String
         let author: String
@@ -34,7 +34,7 @@ public extension RSSResponse {
 }
 
 public extension RSSResponse.Item {
-    struct Enclosure {
+    struct Enclosure: Decodable {
         let link: String
     }
 }
