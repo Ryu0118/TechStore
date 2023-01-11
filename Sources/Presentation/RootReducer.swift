@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+import Domain
 
 public struct RootReducer: ReducerProtocol {
     @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend
@@ -30,7 +31,7 @@ public struct RootReducer: ReducerProtocol {
 //
 //                        print(qiitaTrend)
 //                        print(zennTrend)
-                        let article = try await searchArticle("Swift", 1, 10)
+                        let article = try await searchArticle(.init(query: "Swift", page: 1, perPage: 10))
                         print(article)
                     } catch {
                         print(error)
