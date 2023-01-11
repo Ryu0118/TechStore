@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2"),
         .package(url: "https://github.com/kean/Nuke", from: "11.5.3"),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.4.3"),
-
+        .package(url: "https://github.com/Ryu0118/FeedKit", from: "1.0.0")
     ],
     targets: [
         .target(
@@ -34,7 +34,6 @@ let package = Package(
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "NukeUI", package: "Nuke"),
-                .product(name: "SwiftSoup", package: "SwiftSoup"),
             ]
         ),
         .target(
@@ -43,6 +42,8 @@ let package = Package(
                 "Domain",
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                .product(name: "SwiftSoup", package: "SwiftSoup"),
+                .product(name: "FeedKit", package: "FeedKit"),
             ],
             resources: [
                 .process("Resources"),

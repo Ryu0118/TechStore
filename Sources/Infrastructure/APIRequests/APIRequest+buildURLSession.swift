@@ -16,6 +16,7 @@ extension APIRequest {
 
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.httpAdditionalHeaders = httpHeaders
+        sessionConfig.requestCachePolicy = .returnCacheDataElseLoad
 
         return URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
     }
