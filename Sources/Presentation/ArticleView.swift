@@ -20,7 +20,7 @@ struct ArticleView: View {
                     TSImage(url: viewStore.thumbnailUrl)
                         .frame(width: proxy.size.width, height: proxy.size.width / 1.618)
                     
-                    VStack(spacing: 8) {
+                    VStack() {
                         titleLabel(viewStore)
                         bottomBar(viewStore)
                     }
@@ -36,7 +36,7 @@ private extension ArticleView {
         _ viewStore: ViewStore<Article, ArticleReducer.Action>
     ) -> some View {
         Text(viewStore.title)
-            .font(.title3)
+            .font(.headline)
             .multilineTextAlignment(.center)
             .lineLimit(3)
     }
@@ -47,6 +47,7 @@ private extension ArticleView {
         HStack {
             HStack {
                 Image(systemName: "clock")
+                    .padding(.trailing, -3)
                 Text(viewStore.updatedAt.string)
             }
             
@@ -55,8 +56,8 @@ private extension ArticleView {
             Text(viewStore.linkUrl.host() ?? "")
                 .foregroundColor(.secondary)
         }
-        .font(.caption)
-        .padding([.leading, .trailing], 8)
+        .font(.caption2)
+        .padding(.top, 2)
     }
 }
 
@@ -65,6 +66,7 @@ struct ArticleView_Preview: PreviewProvider {
     static var previews: some View {
         ArticleView(store: .init(
             initialState: .init(
+                id: UUID(),
                 article:
                     Article(
                         title: "SwiftUIでSwiftUIを作る画期的方法",

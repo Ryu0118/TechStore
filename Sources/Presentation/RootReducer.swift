@@ -10,6 +10,18 @@ import Domain
 import Foundation
 
 public struct RootReducer: ReducerProtocol {
+    public struct State: Equatable {
+        @BindableState var text: String = ""
+        var sections: IdentifiedArrayOf<ArticleSectionReducer.State> = []
+        
+        public init() {}
+    }
+
+    public enum Action: BindableAction, Equatable {
+        case binding(BindingAction<State>)
+        case onAppear
+    }
+
     @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend
     @Dependency(\.zennTrendRepository.fetchTrend) var fetchZennTrend
     @Dependency(\.articleRepository.searchArticle) var searchArticle
@@ -43,18 +55,4 @@ public struct RootReducer: ReducerProtocol {
     }
 
     public init() {}
-}
-
-public extension RootReducer {
-    struct State: Equatable {
-        @BindableState var text: String
-        public init(text: String = "") {
-            self.text = text
-        }
-    }
-
-    enum Action: BindableAction, Equatable {
-        case binding(BindingAction<State>)
-        case onAppear
-    }
 }

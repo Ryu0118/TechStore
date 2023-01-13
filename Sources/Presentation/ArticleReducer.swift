@@ -5,12 +5,14 @@
 //  Created by ryunosuke.shibuya on 2023/01/13.
 //
 
+import Foundation
 import ComposableArchitecture
 import Domain
 
 struct ArticleReducer: ReducerProtocol {
     // MARK: - State
-    struct State: Equatable {
+    struct State: Equatable, Identifiable {
+        let id: UUID
         let article: Article
     }
 

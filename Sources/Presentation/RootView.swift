@@ -21,10 +21,8 @@ public struct RootView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationStack {
                 ScrollView {
-                    Section {
-                        Text("Test")
-                    } header: {
-                        Text("Test")
+                    LazyHStack {
+                        
                     }
                 }
                 .refreshable {}
