@@ -15,18 +15,18 @@ extension ArticleRepository: DependencyKey {
         let urlSession = request.buildURLSession()
         let client = APIClient(urlSession: urlSession)
         let data = try await client.send(request)
-        
+
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let response = try decoder.decode([QiitaAPIResponse].self, from: data)
 
         let converter = ArticleThumbnailAssigner()
         let articles = response.map {
-            return Article(title: $0.title, description: $0.title, updatedAt: $0.updated_at, linkUrl: URL(string: $0.url)!)
+            Article(title: $0.title, description: $0.title, updatedAt: $0.updated_at, linkUrl: URL(string: $0.url)!)
         }
-        
+
         let converted = try await converter.assignThumbnailIfNeeded(articles: articles)
-        
+
         return converted
     }
 }

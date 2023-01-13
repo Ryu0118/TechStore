@@ -6,8 +6,8 @@
 //
 
 import ComposableArchitecture
-import Foundation
 import Domain
+import Foundation
 
 public struct RootReducer: ReducerProtocol {
     @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend

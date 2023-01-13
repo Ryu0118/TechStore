@@ -1,6 +1,6 @@
-// 
+//
 //  RSSTopicInfo.swift
-//  
+//
 //
 //  Created by ryunosuke.shibuya on 2023/01/11.
 //
@@ -19,7 +19,7 @@ public struct RSSTopicInfo {
     /// https://labs.gree.jp/blog/tag/__TOPIC__/feed/
     /// https://nitter.net/__TOPIC__/rss
     public let topicUrl: String
-    
+
     public init(rssUrl: String, topicUrl: String) {
         self.rssUrl = rssUrl
         self.topicUrl = topicUrl

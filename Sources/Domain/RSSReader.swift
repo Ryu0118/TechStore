@@ -13,7 +13,7 @@ public struct RSSReader {
     public var readFeed: (_ url: String) async throws -> [Article]
 
     public init(readRss: @escaping (_: String) async throws -> [Article]) {
-        self.readFeed = readRss
+        readFeed = readRss
     }
 }
 

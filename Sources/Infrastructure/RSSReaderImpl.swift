@@ -7,26 +7,26 @@
 
 import Dependencies
 import Domain
-import Foundation
 import FeedKit
+import Foundation
 
 extension RSSReader: DependencyKey {
     public static var liveValue: RSSReader = .init { url in
         let parser = FeedParser(URL: URL(string: url)!)
         let feed = try await parser.parseAsync()
-        
+
         var articles = convertFeedToArticle(feed: feed)
         let converter = ArticleThumbnailAssigner()
         articles = try await converter.assignThumbnailIfNeeded(articles: articles)
-        
+
         return articles
     }
-    
+
     private static func convertFeedToArticle(
         feed: Feed
     ) -> [Article] {
         switch feed {
-        case .atom(let atomFeed):
+        case let .atom(atomFeed):
             return atomFeed.entries?
                 .compactMap { entry in
                     guard let title = entry.title,
@@ -37,11 +37,11 @@ extension RSSReader: DependencyKey {
                     else {
                         return nil
                     }
-                    
+
                     return Article(title: title, description: description, updatedAt: updatedAt, linkUrl: linkUrl)
                 } ?? []
-            
-        case .rss(let rSSFeed):
+
+        case let .rss(rSSFeed):
             return rSSFeed.items?
                 .compactMap { item in
                     guard let title = item.title,
@@ -52,14 +52,14 @@ extension RSSReader: DependencyKey {
                     else {
                         return nil
                     }
-                    
+
                     let thumbnail = item.enclosure?.attributes?.url ?? ""
                     let thumbnailUrl = URL(string: thumbnail)
-                    
+
                     return Article(title: title, description: description, updatedAt: pubDate, linkUrl: linkUrl, thumbnailUrl: thumbnailUrl)
                 } ?? []
-            
-        case .json(let jSONFeed):
+
+        case let .json(jSONFeed):
             return jSONFeed.items?
                 .compactMap { item in
                     guard let title = item.title,
@@ -70,10 +70,10 @@ extension RSSReader: DependencyKey {
                     else {
                         return nil
                     }
-                    
+
                     let thumbnail = item.image ?? ""
                     let thumbnailUrl = URL(string: thumbnail)
-                    
+
                     return Article(title: title, description: description, updatedAt: pubDate, linkUrl: linkUrl, thumbnailUrl: thumbnailUrl)
                 } ?? []
         }

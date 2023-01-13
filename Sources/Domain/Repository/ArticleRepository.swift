@@ -17,12 +17,12 @@ public struct ArticleRepository {
     }
 }
 
-extension ArticleRepository {
-    public struct SearchArticleArgument {
+public extension ArticleRepository {
+    struct SearchArticleArgument {
         public let query: String
         public let page: Int
         public let perPage: Int
-        
+
         public init(query: String, page: Int, perPage: Int) {
             self.query = query
             self.page = page
