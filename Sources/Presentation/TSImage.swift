@@ -8,17 +8,33 @@
 import SwiftUI
 import NukeUI
 
-struct TSImage: View {
-    let url: URL
+struct TSImage<Placeholder: View>: View {
+    let url: URL?
+    let placeholder: () -> Placeholder
+    
+    init(
+        url: URL?,
+        @ViewBuilder placeholder: @escaping () -> Placeholder = { Color.gray }
+    ) {
+        self.url = url
+        self.placeholder = placeholder
+    }
     
     var body: some View {
-        LazyImage(url: url) { state in
-            if let image = state.image {
-                image
+        if let url {
+            LazyImage(url: url) { state in
+                if let image = state.image {
+                    image
+                }
+                else{
+                    placeholder()
+                }
             }
-            else{
-                Color.gray
-            }
+            
+        }
+        else {
+            // placeholder
+            placeholder()
         }
     }
 }
