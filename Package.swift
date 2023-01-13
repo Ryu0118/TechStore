@@ -12,6 +12,7 @@ let package = Package(
         .library(name: "Domain", targets: ["Domain"]),
         .library(name: "Presentation", targets: ["Presentation"]),
         .library(name: "Infrastructure", targets: ["Infrastructure"]),
+        .library(name: "Shared", targets: ["Shared"])
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2"),
@@ -31,6 +32,7 @@ let package = Package(
             name: "Presentation",
             dependencies: [
                 "Domain",
+                "Shared",
                 .product(name: "Dependencies", package: "swift-composable-architecture"),
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "NukeUI", package: "Nuke"),
@@ -49,6 +51,7 @@ let package = Package(
                 .process("Resources"),
             ]
         ),
+        .target(name: "Shared"),
         .testTarget(
             name: "TechStoreTests",
             dependencies: [
