@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol TrendRepository {
-    var fetchTrend: () async throws -> RSSResponse { get set }
+    var fetchTrend: () async throws -> [Article] { get set }
 }

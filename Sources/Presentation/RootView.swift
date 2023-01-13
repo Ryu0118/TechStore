@@ -27,6 +27,9 @@ public struct RootView: View {
                         Text("Test")
                     }
                 }
+                .refreshable {
+                    
+                }
                 .navigationTitle("TechStore")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

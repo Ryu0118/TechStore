@@ -10,9 +10,9 @@ import Foundation
 import XCTestDynamicOverlay
 
 public struct ZennTrendRepository: TrendRepository {
-    public var fetchTrend: () async throws -> RSSResponse
+    public var fetchTrend: () async throws -> [Article]
 
-    public init(fetchTrend: @escaping () async throws -> RSSResponse) {
+    public init(fetchTrend: @escaping () async throws -> [Article]) {
         self.fetchTrend = fetchTrend
     }
 }

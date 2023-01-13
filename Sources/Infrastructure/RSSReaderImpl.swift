@@ -8,64 +8,74 @@
 import Dependencies
 import Domain
 import Foundation
+import FeedKit
 
 extension RSSReader: DependencyKey {
     public static var liveValue: RSSReader = .init { url in
-        let request = RssToJsonRequest(rssUrl: url)
-        let session = request.buildURLSession()
-        let client = APIClient(urlSession: session)
-        let data = try await client.send(request)
-        var response = try JSONDecoder().decode(RSSResponse.self, from: data)
-
-        let items = response.items
-        let ogpRelation = try await associateItemAndOGPData(items: items)
-
-        let modifiedItem = assignThumbnailIfNeeded(items: items, relation: ogpRelation)
-        response.items = modifiedItem
-
-        return response
+        let parser = FeedParser(URL: URL(string: url)!)
+        let feed = try await parser.parseAsync()
+        
+        var articles = convertFeedToArticle(feed: feed)
+        let converter = ArticleThumbnailAssigner()
+        articles = try await converter.assignThumbnailIfNeeded(articles: articles)
+        
+        return articles
     }
-
-    private static func associateItemAndOGPData(
-        items: [RSSResponse.Item]
-    ) async throws -> [RSSResponse.Item: OGPData] { // thumbnailがないItemのみOGPDataを取得しItemとOGPDataを関連づける
-        var ogpRelation = [RSSResponse.Item: OGPData]()
-
-        try await withThrowingTaskGroup(of: (RSSResponse.Item, OGPData).self) { group in
-            let ogpFetcher = OGPFetcher()
-
-            for item in items {
-                if item.enclosure.link?.isEmpty ?? true,
-                   item.thumbnail.isEmpty
-                { // 記事のOGP画像がRSSから取得できない場合は手動で取得する。
-                    group.addTask {
-                        try await (item, ogpFetcher.fetchData(from: item.link))
+    
+    private static func convertFeedToArticle(
+        feed: Feed
+    ) -> [Article] {
+        switch feed {
+        case .atom(let atomFeed):
+            return atomFeed.entries?
+                .compactMap { entry in
+                    guard let title = entry.title,
+                          let description = entry.content?.value,
+                          let updatedAt = entry.updated ?? entry.published,
+                          let link = entry.links?.first?.attributes?.href,
+                          let linkUrl = URL(string: link)
+                    else {
+                        return nil
                     }
-                }
-            }
-
-            for try await (item, ogpData) in group {
-                ogpRelation.updateValue(ogpData, forKey: item)
-            }
-        }
-
-        return ogpRelation
-    }
-
-    private static func assignThumbnailIfNeeded(
-        items: [RSSResponse.Item],
-        relation: [RSSResponse.Item: OGPData]
-    ) -> [RSSResponse.Item] { // thumbnailがないItemのみOGPDataが結びついているならばOGP画像を代わりに代入
-        items.map { item in
-            var copy = item
-
-            if let ogpData = relation[item],
-               let thumbnail = ogpData.imageURL?.absoluteString
-            {
-                copy.thumbnail = thumbnail
-            }
-
-            return copy
+                    
+                    return Article(title: title, description: description, updatedAt: updatedAt, linkUrl: linkUrl)
+                } ?? []
+            
+        case .rss(let rSSFeed):
+            return rSSFeed.items?
+                .compactMap { item in
+                    guard let title = item.title,
+                          let description = item.description,
+                          let link = item.link,
+                          let linkUrl = URL(string: link),
+                          let pubDate = item.pubDate
+                    else {
+                        return nil
+                    }
+                    
+                    let thumbnail = item.enclosure?.attributes?.url ?? ""
+                    let thumbnailUrl = URL(string: thumbnail)
+                    
+                    return Article(title: title, description: description, updatedAt: pubDate, linkUrl: linkUrl, thumbnailUrl: thumbnailUrl)
+                } ?? []
+            
+        case .json(let jSONFeed):
+            return jSONFeed.items?
+                .compactMap { item in
+                    guard let title = item.title,
+                          let description = item.summary,
+                          let link = item.url,
+                          let linkUrl = URL(string: link),
+                          let pubDate = item.dateModified ?? item.datePublished
+                    else {
+                        return nil
+                    }
+                    
+                    let thumbnail = item.image ?? ""
+                    let thumbnailUrl = URL(string: thumbnail)
+                    
+                    return Article(title: title, description: description, updatedAt: pubDate, linkUrl: linkUrl, thumbnailUrl: thumbnailUrl)
+                } ?? []
         }
     }
 }

@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.47.2"),
         .package(url: "https://github.com/kean/Nuke", from: "11.5.3"),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.4.3"),
-        .package(url: "https://github.com/Ryu0118/FeedKit", from: "1.0.0")
+        .package(url: "https://github.com/Ryu0118/FeedKit", branch: "master")
     ],
     targets: [
         .target(

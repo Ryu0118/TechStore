@@ -10,13 +10,15 @@ import Foundation
 public struct Article: Hashable {
     public let title: String
     public let description: String
-    public let link: String
-    public let thumbnail: String
+    public let updatedAt: Date
+    public let linkUrl: URL
+    public var thumbnailUrl: URL?
 
-    public init(title: String, description: String, link: String, thumbnail: String) {
+    public init(title: String, description: String, updatedAt: Date, linkUrl: URL, thumbnailUrl: URL? = nil) {
         self.title = title
         self.description = description
-        self.link = link
-        self.thumbnail = thumbnail
+        self.updatedAt = updatedAt
+        self.linkUrl = linkUrl
+        self.thumbnailUrl = thumbnailUrl
     }
 }

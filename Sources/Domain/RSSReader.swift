@@ -10,15 +10,15 @@ import Foundation
 import XCTestDynamicOverlay
 
 public struct RSSReader {
-    public var readRss: (_ url: String) async throws -> RSSResponse
+    public var readFeed: (_ url: String) async throws -> [Article]
 
-    public init(readRss: @escaping (_: String) async throws -> RSSResponse) {
-        self.readRss = readRss
+    public init(readRss: @escaping (_: String) async throws -> [Article]) {
+        self.readFeed = readRss
     }
 }
 
 extension RSSReader: TestDependencyKey {
     public static let testValue = Self(
-        readRss: unimplemented("RSSReader.readRss")
+        readRss: unimplemented("RSSReader.readFeed")
     )
 }

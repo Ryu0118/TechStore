@@ -10,11 +10,11 @@ import Domain
 import Foundation
 
 extension ZennTrendRepository: DependencyKey {
-    @Dependency(\.rssReader.readRss) static var readRss
+    @Dependency(\.rssReader.readFeed) static var readFeed
 
     public static let liveValue: ZennTrendRepository = .init {
         let rssUrl = "https://zenn.dev/feed"
-        let rss = try await readRss(rssUrl)
+        let rss = try await readFeed(rssUrl)
 
         return rss
     }
