@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 struct HomeView: View {
     let store: StoreOf<HomeReducer>
+    
+    @Environment(\.isSearching) private var isSearching
 
     init(store: StoreOf<HomeReducer>) {
         self.store = store
@@ -35,6 +37,9 @@ struct HomeView: View {
                     ProgressView()
                         .scaleEffect(1.5)
                 }
+            }
+            .onChange(of: isSearching) { newValue in
+                print(newValue)
             }
             .onAppear {
                 viewStore.send(.onAppear)

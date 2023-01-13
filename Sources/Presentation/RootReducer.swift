@@ -13,14 +13,14 @@ public struct RootReducer: ReducerProtocol {
     // MARK: - State
     public struct State: Equatable {
         @BindableState var text: String = ""
-        var home: HomeReducer.State = .init()
+        var paging: PagingReducer.State = .init()
         public init() {}
     }
     
     // MARK: - Action
     public enum Action: BindableAction, Equatable {
         case binding(BindingAction<State>)
-        case home(HomeReducer.Action)
+        case paging(PagingReducer.Action)
         case onAppear
     }
     
@@ -30,8 +30,8 @@ public struct RootReducer: ReducerProtocol {
     public var body: some ReducerProtocolOf<Self> {
         BindingReducer()
         
-        Scope(state: \.home, action: /Action.home) {
-            HomeReducer()
+        Scope(state: \.paging, action: /Action.paging) {
+            PagingReducer()
         }
         
         Reduce { state, action in
@@ -42,7 +42,7 @@ public struct RootReducer: ReducerProtocol {
             case .onAppear:
                 return .none
                 
-            case .home:
+            case .paging:
                 return .none
             }
         }
