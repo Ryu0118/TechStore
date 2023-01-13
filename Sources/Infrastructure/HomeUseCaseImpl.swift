@@ -8,7 +8,6 @@
 import Foundation
 import Dependencies
 import Domain
-import struct SwiftUI.AppStorage
 
 extension HomeUseCase: DependencyKey {
     @Dependency(\.rssReader.readFeed) static var readFeed
@@ -52,15 +51,3 @@ extension UserFeed {
         ]
     }
 }
-
-public struct UserFeed: Codable, Hashable {
-    public let feedUrl: URL
-    public let title: String
-    
-    public init(feedUrl: URL, title: String) {
-        self.feedUrl = feedUrl
-        self.title = title
-    }
-}
-
-
