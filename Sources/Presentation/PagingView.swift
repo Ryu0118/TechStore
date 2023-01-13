@@ -17,9 +17,12 @@ struct PagingView: View {
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            HomeView(
-                store: store.scope(state: \.home, action: PagingReducer.Action.home)
-            )
+            TabView {
+                HomeView(
+                    store: store.scope(state: \.home, action: PagingReducer.Action.home)
+                )
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
         }
     }
 }
