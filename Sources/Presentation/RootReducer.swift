@@ -10,49 +10,42 @@ import Domain
 import Foundation
 
 public struct RootReducer: ReducerProtocol {
+    // MARK: - State
     public struct State: Equatable {
         @BindableState var text: String = ""
-        var sections: IdentifiedArrayOf<ArticleSectionReducer.State> = []
-        
+        var home: HomeReducer.State = .init()
         public init() {}
     }
-
+    
+    // MARK: - Action
     public enum Action: BindableAction, Equatable {
         case binding(BindingAction<State>)
+        case home(HomeReducer.Action)
         case onAppear
     }
-
-    @Dependency(\.qiitaTrendRepository.fetchTrend) var fetchQiitaTrend
-    @Dependency(\.zennTrendRepository.fetchTrend) var fetchZennTrend
-    @Dependency(\.articleRepository.searchArticle) var searchArticle
-
-    public var body: some ReducerProtocol<State, Action> {
+    
+    public init() {}
+    
+    // MARK: - Reducer
+    public var body: some ReducerProtocolOf<Self> {
         BindingReducer()
-
-        Reduce { _, action in
+        
+        Scope(state: \.home, action: /Action.home) {
+            HomeReducer()
+        }
+        
+        Reduce { state, action in
             switch action {
             case .binding:
                 return .none
+                
             case .onAppear:
-                Task {
-                    do {
-//                        async let qiita = fetchQiitaTrend()
-//                        async let zenn = fetchZennTrend()
-//
-//                        let (qiitaTrend, zennTrend) = try await (qiita, zenn)
-//
-//                        print(qiitaTrend)
-//                        print(zennTrend)
-                        let article = try await searchArticle(.init(query: "Swift", page: 1, perPage: 10))
-                        print(article)
-                    } catch {
-                        print(error)
-                    }
-                }
+                return .none
+                
+            case .home:
                 return .none
             }
         }
-    }
 
-    public init() {}
+    }
 }

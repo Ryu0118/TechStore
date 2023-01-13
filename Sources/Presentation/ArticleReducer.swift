@@ -9,23 +9,23 @@ import Foundation
 import ComposableArchitecture
 import Domain
 
-struct ArticleReducer: ReducerProtocol {
+public struct ArticleReducer: ReducerProtocol {
     // MARK: - State
-    struct State: Equatable, Identifiable {
-        let id: UUID
+    public struct State: Equatable, Identifiable {
+        public let id: UUID
         let article: Article
     }
 
     // MARK: - Action
-    enum Action: Equatable {
+    public enum Action: Equatable {
     }
 
     // MARK: - Dependencies
 
-    init() {}
+    public init() {}
 
     // MARK: - Reducer
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+    public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         
     }
 }

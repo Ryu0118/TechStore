@@ -28,4 +28,9 @@ public extension DependencyValues {
         get { self[ArticleRepository.self] }
         set { self[ArticleRepository.self] = newValue }
     }
+    
+    var homeUseCase: HomeUseCase {
+        get { self[HomeUseCase.self] }
+        set { self[HomeUseCase.self] = newValue }
+    }
 }

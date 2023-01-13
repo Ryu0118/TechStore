@@ -10,16 +10,16 @@ import ComposableArchitecture
 import Domain
 import Foundation
 
-struct ArticleSectionReducer: ReducerProtocol {
+public struct ArticleSectionReducer: ReducerProtocol {
     // MARK: - State
-    struct State: Equatable, Identifiable {
-        let id: UUID
+    public struct State: Equatable, Identifiable {
+        public let id: UUID
         let sectionTitle: String
         var articles: IdentifiedArrayOf<ArticleReducer.State>
     }
 
     // MARK: - Action
-    enum Action: Equatable {
+    public enum Action: Equatable {
         case article(id: ArticleReducer.State.ID, action: ArticleReducer.Action)
     }
 
@@ -28,7 +28,7 @@ struct ArticleSectionReducer: ReducerProtocol {
     init() {}
 
     // MARK: - Reducer
-    var body: some ReducerProtocolOf<Self> {
+    public var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
             switch action {
             case .article:

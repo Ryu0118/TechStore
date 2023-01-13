@@ -23,12 +23,12 @@ struct ArticleSectionView: View {
                     .padding(.leading, 8)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
+                    LazyHStack(alignment: .top) {
                         ForEachStore(
                             store.scope(state: \.articles, action: ArticleSectionReducer.Action.article(id:action:))
                         ) { articleStore in
                             ArticleView(store: articleStore)
-                                .frame(width: 180)
+                                .frame(width: 180, height: 250)
                         }
                     }
                 }

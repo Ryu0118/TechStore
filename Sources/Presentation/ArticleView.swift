@@ -25,7 +25,6 @@ struct ArticleView: View {
                         bottomBar(viewStore)
                     }
                 }
-                .position(x: proxy.frame(in: .local).midX, y: proxy.frame(in: .local).midY)
             }
         }
     }

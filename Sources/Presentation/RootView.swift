@@ -20,12 +20,9 @@ public struct RootView: View {
     public var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationStack {
-                ScrollView {
-                    LazyHStack {
-                        
-                    }
-                }
-                .refreshable {}
+                HomeView(
+                    store: store.scope(state: \.home, action: RootReducer.Action.home)
+                )
                 .navigationTitle("TechStore")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
