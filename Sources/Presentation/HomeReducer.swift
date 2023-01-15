@@ -55,10 +55,10 @@ public struct HomeReducer: ReducerProtocol {
                 state.sections = IdentifiedArrayOf(
                     uniqueElements: sections.map { section in
                         ArticleSectionReducer.State(
-                            id: uuid.callAsFunction(),
+                            id: uuid(),
                             sectionTitle: section.sectionTitle,
                             articles: IdentifiedArray(
-                                uniqueElements: section.articles.map { ArticleReducer.State(id: uuid.callAsFunction(), article: $0) }
+                                uniqueElements: section.articles.map { ArticleReducer.State(id: uuid(), article: $0) }
                             )
                         )
                     }
