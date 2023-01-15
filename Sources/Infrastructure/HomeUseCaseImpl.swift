@@ -13,33 +13,39 @@ extension HomeUseCase: DependencyKey {
     @Dependency(\.rssReader.readFeed) static var readFeed
     @Storage("userFeeds", register: UserFeed.default()) static var userFeeds
     
-    static public var liveValue: HomeUseCase = .init {
-        var relation = [UserFeed: HomeSection]()
-        var sections = [HomeSection]()
-        
-        try await withThrowingTaskGroup(of: (UserFeed, [Article]).self) { group in
-            for userFeed in userFeeds {
-                group.addTask {
-                    try await (userFeed, readFeed(userFeed.feedUrl.absoluteString))
+    static public var liveValue: HomeUseCase = live()
+    
+    static public func live() -> Self {
+        HomeUseCase(
+            fetchSections: {
+                var relation = [UserFeed: HomeSection]()
+                var sections = [HomeSection]()
+                
+                try await withThrowingTaskGroup(of: (UserFeed, [Article]).self) { group in
+                    for userFeed in userFeeds {
+                        group.addTask {
+                            try await (userFeed, readFeed(userFeed.feedUrl.absoluteString))
+                        }
+                    }
+                    
+                    for try await (feed, articles) in group {
+                        relation.updateValue(
+                            .init(sectionTitle: feed.title, articles: articles),
+                            forKey: feed
+                        )
+                    }
                 }
+                
+                for userFeed in userFeeds { //sort
+                    guard let section = relation[userFeed] else {
+                        continue
+                    }
+                    sections.append(section)
+                }
+                
+                return sections
             }
-            
-            for try await (feed, articles) in group {
-                relation.updateValue(
-                    .init(sectionTitle: feed.title, articles: articles),
-                    forKey: feed
-                )
-            }
-        }
-        
-        for userFeed in userFeeds { //sort
-            guard let section = relation[userFeed] else {
-                continue
-            }
-            sections.append(section)
-        }
-        
-        return sections
+        )
     }
 }
 
